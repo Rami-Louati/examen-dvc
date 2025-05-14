@@ -1,2 +1,18 @@
-/venv
+/exam
 /clean_data.csv
+# Ignore DVC cache directory
+.dvc/cache/
+
+# Ignore DVC tracking files
+.dvc/
+
+# Ignore Python cache files
+*.pyc
+__pycache__/
+
+# Ignore logs, temporary files
+*.log
+*.tmp
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
