@@ -1,12 +1,13 @@
 import numpy as np
+import pandas as pd
 import os
 import joblib
 import json
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 # Chargement des données
-X_test = np.load('data/processed/X_test_scaled.npy')
-y_test = np.load('data/processed/y_test.npy')
+X_test = pd.read_csv('data/processed/X_test_scaled.csv')
+y_test = pd.read_csv('data/processed/y_test.csv')
 
 # Chargement du modèle entraîné
 model = joblib.load('models/trained_model.pkl')
@@ -26,11 +27,12 @@ metrics = {
     'mae': mae
 }
 os.makedirs('metrics', exist_ok=True)
+
 with open('metrics/scores.json', 'w') as f:
     json.dump(metrics, f, indent=4)
 
 # Sauvegarde des prédictions
 os.makedirs('data', exist_ok=True)
-np.save('data/predictions.npy', predictions)
+pd.DataFrame(predictions, columns=['prediction']).to_csv('data/predictions.csv', index=False)
 
 print("Évaluation terminée. Scores et prédictions sauvegardés.")

@@ -1,11 +1,12 @@
 import numpy as np
+import pandas as pd
 import os
 import joblib
 from sklearn.ensemble import RandomForestRegressor
 
 # Chargement des données
-X_train = np.load('data/processed/X_train_scaled.npy')
-y_train = np.load('data/processed/y_train.npy')
+X_train = pd.read_csv('data/processed/X_train_scaled.csv')
+y_train = pd.read_csv('data/processed/y_train.csv')
 
 # Chargement des meilleurs paramètres
 best_params = joblib.load('models/best_params.pkl')
